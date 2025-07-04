@@ -11,6 +11,10 @@
 
     <!-- Fuente relajada y moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 </head>
 
 <body>
@@ -62,11 +66,16 @@
         <section id="gallery" aria-label="Galería de ilustraciones lofi">
             <h2>Galería Lofi</h2>
             <p>Explora ilustraciones relajantes, fondos de pantalla y escenas inspiradas en el mundo lofi.</p>
-            <div class="image-carousel">
-                <!-- Carrusel de imágenes (puede integrarse con una API o local) -->
-                <img src="assets/images/lofi1.jpg" alt="Ilustración lofi 1" />
-                <img src="assets/images/lofi2.jpg" alt="Ilustración lofi 2" />
-                <img src="assets/images/lofi3.jpg" alt="Ilustración lofi 3" />
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="assets/images/lofi1.jpg" alt="Ilustración lofi 1" /></div>
+                    <div class="swiper-slide"><img src="assets/images/lofi2.jpg" alt="Ilustración lofi 2" /></div>
+                    <div class="swiper-slide"><img src="assets/images/lofi3.jpg" alt="Ilustración lofi 3" /></div>
+                </div>
+                <!-- Controles opcionales -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </section>
 
@@ -113,6 +122,9 @@
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 
 </body>
 </html>
