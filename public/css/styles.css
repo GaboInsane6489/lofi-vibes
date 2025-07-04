@@ -144,3 +144,110 @@ body::before {
     background: rgba(30, 30, 47, 0.7); /* oscurece sin ocultar */
     z-index: -1;
 }
+
+/* ============================================
+    🖼️ Galería de ilustraciones lofi
+============================================ */
+#gallery {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.image-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.image-carousel img {
+    height: 200px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.image-carousel img:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================
+    🖼️ Wallpapers descargables
+============================================ */
+#wallpapers {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.wallpaper-list {
+    list-style: none;
+    padding: 0;
+}
+
+.wallpaper-list li {
+    margin: 0.5rem 0;
+}
+
+.wallpaper-list a {
+    color: #8be9fd;
+    text-decoration: none;
+}
+
+.wallpaper-list a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+    📡 Estaciones de radio lofi
+============================================ */
+#stations {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.station-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.station-list button {
+    background-color: #2a2a3d;
+    color: #ffb86c;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.station-list button:hover {
+    background-color: #3a3a4f;
+}
+
+/* ============================================
+    🧘 Estilo de vida lofi
+============================================ */
+#lifestyle {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+#lifestyle ul {
+    list-style: none;
+    padding: 0;
+}
+
+#lifestyle li {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    position: relative;
+}
+
+#lifestyle li::before {
+    content: '🎧';
+    position: absolute;
+    left: 0;
+}
