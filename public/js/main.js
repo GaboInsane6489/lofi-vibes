@@ -75,24 +75,35 @@ function drawVisualizer() {
 
     analyser.getByteFrequencyData(dataArray);
 
-    ctx.fillStyle = '#1e1e2f';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const centerY = canvas.height / 2;
+    const amplitude = 100;
+    const frequency = 0.02;
+
+    ctx.beginPath();
+    
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#1e1e2f');
+    gradient.addColorStop(1, '#2c2c3e');
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const barWidth = (canvas.width / bufferLength) * 2.5;
-    let x = 0;
 
-    for (let i = 0; i < bufferLength; i++) {
-        const barHeight = dataArray[i];
-        const r = 255;
-        const g = 184;
-        const b = 108;
+    ctx.moveTo(0, centerY);
 
-        ctx.fillStyle = `rgb(${r},${g},${b})`;
-        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-        x += barWidth + 1;
+    for (let x = 0; x < canvas.width; x++) {
+        const i = Math.floor((x / canvas.width) * bufferLength);
+        const value = dataArray[i] / 255;
+        const y = centerY + Math.sin(x * frequency) * amplitude * value;
+        ctx.lineTo(x, y);
     }
+
+    ctx.strokeStyle = 'rgba(255, 184, 108, 0.8)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 }
+
 
 // Iniciar visualizador al reproducir
 audio.addEventListener('play', () => {
