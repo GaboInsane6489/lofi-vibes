@@ -11,11 +11,18 @@
 
 body {
     font-family: var(--font-main);
-    background-color: var(--color-bg);
+    background-color: var(--color-bg); /* respaldo si la imagen no carga */
+    background-image: url('https://images3.alphacoders.com/132/thumb-1920-1322308.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-text);
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    position: relative;
+    z-index: 0;
 }
 
 /* ============================================
@@ -98,4 +105,14 @@ footer {
     padding: 1rem;
     font-size: 0.9rem;
     color: #aaa;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 47, 0.7); /* oscurece sin ocultar */
+    z-index: -1;
 }
