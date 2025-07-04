@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lofi Vibes</title>
+
+        <!-- Estilos base -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- Fuente relajada y moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- 🧭 Encabezado principal con navegación -->
+    <header>
+        <nav>
+            <h1>Lofi Vibes</h1>
+            <ul>
+                <li><a href="#player">Reproductor</a></li>
+                <li><a href="#visuals">Visuales</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 🎵 Sección principal del reproductor -->
+    <main>
+        <section id="player" aria-label="Reproductor de música lofi">
+            <h2>Escucha y relájate</h2>
+            <!-- Aquí irá el reproductor personalizado -->
+            <div class="audio-player">
+                <audio controls>
+                    <source src="assets/audio/sample.mp3" type="audio/mpeg" />
+                        Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+        </section>
+
+        <!-- 🌌 Visualizaciones animadas -->
+        <section id="visuals" aria-label="Visualizaciones animadas">
+            <h2>Visuales en tiempo real</h2>
+            <canvas id="visualizer" width="800" height="400"></canvas>
+        </section>
+
+        <!-- 📚 Blog o artículos sobre el estilo lofi -->
+        <section id="blog" aria-label="Artículos sobre lofi">
+            <h2>Historias y cultura lofi</h2>
+            <article>
+                <h3>¿Qué es el lofi?</h3>
+                <p>El lofi es más que música: es una atmósfera, una estética y una forma de desconectar del ruido del mundo.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- 📞 Pie de página con contacto y créditos -->
+    <footer id="contact">
+        <p>Creado por Gabriel González · <a href="https://github.com/tuusuario" target="_blank">GitHub</a></p>
+        <p>&copy; 2025 Lofi Vibes</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
