@@ -32,12 +32,14 @@
     <main>
         <section id="player" aria-label="Reproductor de música lofi">
             <h2>Escucha y relájate</h2>
-            <!-- Aquí irá el reproductor personalizado -->
             <div class="audio-player">
-                <audio controls>
-                    <source src="assets/audio/sample.mp3" type="audio/mpeg" />
-                        Tu navegador no soporta el elemento de audio.
-                </audio>
+                <audio id="audio" src="assets/audio/sample.mp3"></audio>
+                <div class="controls">
+                    <button id="play-pause">▶️</button>
+                    <span id="current-time">0:00</span> /
+                    <span id="duration">0:00</span>
+                    <input type="range" id="seek-bar" value="0" />
+                </div>
             </div>
         </section>
 

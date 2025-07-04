@@ -66,13 +66,41 @@ nav a:hover {
 /* ============================================
     🎵 Reproductor de música
 ============================================ */
-#audio-player,
+
 .audio-player {
-    margin-top: 1rem;
     background-color: #2a2a3d;
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: #ffb86c;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.controls button:hover {
+    transform: scale(1.2);
+}
+
+#seek-bar {
+    width: 100%;
+    margin-top: 0.5rem;
+    accent-color: #8be9fd;
 }
 
 /* ============================================
