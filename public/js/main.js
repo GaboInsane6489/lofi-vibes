@@ -73,7 +73,7 @@ const bufferLength = mainAnalyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
 // 🎨 Estilo del canvas
-canvas.width = window.innerWidth * 0.9;
+canvas.width = canvas.offsetWidth;
 canvas.height = 300;
 
 // 🌈 Colores para cada fuente
