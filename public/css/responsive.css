@@ -72,3 +72,30 @@ section {
         max-width: 100%;
     }
 }
+
+/* ============================================
+    🎚️ Scrollbar adaptable para #lofi-stories
+    Descripción: Ajusta el grosor según el ancho
+    de pantalla, manteniendo la estética lofi
+============================================ */
+
+/* Móvil: fino y discreto */
+@media (max-width: 599px) {
+    #lofi-stories::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+/* Tablet: intermedio */
+@media (min-width: 600px) and (max-width: 1023px) {
+    #lofi-stories::-webkit-scrollbar {
+        width: 8px;
+    }
+}
+
+/* Escritorio: más cómodo */
+@media (min-width: 1024px) {
+    #lofi-stories::-webkit-scrollbar {
+        width: 10px;
+    }
+}

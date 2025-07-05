@@ -34,6 +34,13 @@ body.night-mode {
     color: #e0e0e0;
 }
 
+h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #ffb86c;
+}
+
 /* ============================================
     🧭 Encabezado y navegación
 ============================================ */
@@ -529,20 +536,20 @@ lite-youtube {
 
 
 /* Contenedor principal de la sección de historias con scroll vertical */
-
 #lofi-stories {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: 50vh;
+    height: 60vh; /* Ajustado a 60% de la pantalla */
     background: linear-gradient(to bottom, #1e1e2f, #2a2a3d);
     color: #f0f0f0;
+    padding: 0 6rem; /* Espaciado lateral para mayor comodidad */
+    box-sizing: border-box;
 }
 
-/* Cada bloque de historia ocupa una pantalla completa */
-
+/* Cada bloque de historia ocupa una pantalla completa dentro del contenedor */
 .story-frame {
     scroll-snap-align: start;
-    height: 100vh;
+    min-height: 60vh; /* Coincide con el contenedor */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -551,43 +558,84 @@ lite-youtube {
     line-height: 1.8;
 
     /* Estado inicial: invisible y desplazado hacia abajo */
-
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* Cuando el bloque entra en el viewport, se vuelve visible */
-
 .story-frame.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.scroll-controls {
-    position: fixed;
-    right: 1.5rem;
-    bottom: 2rem;
+#lofi-stories::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lofi-stories::-webkit-scrollbar-track {
+    background: rgba(30, 30, 47, 0.4);
+    border-radius: 4px;
+}
+
+#lofi-stories::-webkit-scrollbar-thumb {
+    background: rgba(255, 184, 108, 0.5);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+#lofi-stories::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 184, 108, 0.8);
+}
+
+/* ============================================
+    🖼️ Sección de Wallpapers lofi
+    Descripción: Estilo visual para enlaces de descarga
+============================================ */
+
+#wallpapers {
+    padding: 3rem 2rem;
+    background: linear-gradient(to bottom, #1e1e2f, #2a2a3d);
+    color: #f0f0f0;
+    text-align: center;
+}
+
+#wallpapers h2 {
+    font-size: 2rem;
+    color: #ffb86c;
+    margin-bottom: 1rem;
+}
+
+#wallpapers p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.wallpaper-list {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    z-index: 1000;
+    align-items: center;
 }
 
-.scroll-btn {
+.wallpaper-list li a {
+    display: inline-block;
     background: rgba(40, 40, 60, 0.8);
     color: #ffb86c;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 184, 108, 0.3);
-    transition: transform 0.2s ease, background 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgba(255, 184, 108, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.scroll-btn:hover {
-    transform: scale(1.1);
+.wallpaper-list li a:hover {
     background: rgba(60, 60, 90, 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 184, 108, 0.4);
 }
+
