@@ -15,6 +15,11 @@
     <!-- Swiper.js CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <!-- Lite YouTube Embed -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.2.0/src/lite-yt-embed.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.2.0/src/lite-yt-embed.css" />
+
+
 </head>
 
 <body>
@@ -68,12 +73,20 @@
         </section>
 
         <!-- 📚 Blog o artículos sobre el estilo lofi -->
-        <section id="blog" aria-label="Artículos sobre lofi">
-            <h2>Historias y cultura lofi</h2>
-            <article>
-                <h3>¿Qué es el lofi?</h3>
-                <p>El lofi es más que música: es una atmósfera, una estética y una forma de desconectar del ruido del mundo.</p>
-            </article>
+        <section id="lofi-stories" aria-label="Historias lofi">
+            <div class="story-frame">
+                <h2>📖 Historias lofi</h2>
+                <p>En una ciudad que nunca duerme, una ventana iluminada esconde un mundo de calma...</p>
+            </div>
+            <div class="story-frame">
+                <p>Una taza de café humeante, lluvia en el cristal, y un beat que late como el corazón.</p>
+            </div>
+            <div class="story-frame">
+                <p>El lofi no solo suena: se siente. Es refugio, es pausa, es memoria.</p>
+            </div>
+            <div class="story-frame">
+                <p>Y tú, ¿qué historia escuchas cuando el mundo se silencia?</p>
+            </div>
         </section>
 
         <!-- 🎨 Galería de ilustraciones lofi -->
@@ -93,6 +106,87 @@
                 <div class="swiper-button-next"></div>
             </div>
         </section>
+
+        <!-- 🎥 Video vibes lofi -->
+
+        <section id="lofi-cinema" aria-label="Galería de videos lofi">
+            <h2>🎞️ Momentos lofi</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <h3>🌙 Noche tranquila</h3>
+                    <lite-youtube 
+                        videoid="1P5BSm_oFJg" 
+                        playlabel="Reproducir Noche tranquila" 
+                        params="loop=1&playlist=1P5BSm_oFJg"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>☕ Café y lluvia</h3>
+                    <lite-youtube 
+                        videoid="HSnK6QqICDA" 
+                        playlabel="Reproducir Café y lluvia" 
+                        params="loop=1&playlist=HSnK6QqICDA"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>🌧️ Lluvia en la ventana</h3>
+                    <lite-youtube 
+                        videoid="drklfHf4XLg" 
+                        playlabel="Reproducir Lluvia en la ventana" 
+                        params="loop=1&playlist=drklfHf4XLg"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>Lonely Night 🌑</h3>
+                    <lite-youtube 
+                        videoid="CMNyHBx1gak" 
+                        playlabel="Reproducir Lonely Night" 
+                        params="loop=1&playlist=CMNyHBx1gak"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>💖 Perfectamente lofi</h3>
+                    <lite-youtube 
+                        videoid="QvrnmDy-lZU" 
+                        playlabel="Reproducir Perfectamente lofi" 
+                        params="loop=1&playlist=QvrnmDy-lZU"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>🌌 Noche interestelar</h3>
+                    <lite-youtube
+                        videoid="Nyx6SBixRE8"
+                        playlabel="Reproducir Noche interestelar"
+                        params="loop=1&playlist=Nyx6SBixRE8"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>🌤️ Amanecer suave</h3>
+                    <lite-youtube
+                        videoid="sR6tjNq8Ywk"
+                        playlabel="Reproducir Amanecer suave"
+                        params="loop=1&playlist=sR6tjNq8Ywk"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>Japan Night Chill 🌧️ Lofi Chill Beats 🍀 Rain Chillhop</h3>
+                    <lite-youtube
+                        videoid="GU8htjxY6ro"
+                        playlabel="Reproducir Recuerdos entre estrellas"
+                        params="loop=1&playlist=GU8htjxY6ro"
+                    ></lite-youtube>
+                </div>
+                <div class="video-card">
+                    <h3>🪐 Flotando en lo desconocido</h3>
+                    <lite-youtube
+                        videoid="tq5rVmanCs8"
+                        playlabel="Reproducir Flotando en lo desconocido"
+                        params="loop=1&playlist=tq5rVmanCs8"
+                    ></lite-youtube>
+                </div>
+            </div>
+        </section>
+
 
         <!-- 🖼️ Wallpapers descargables -->
         <section id="wallpapers" aria-label="Fondos de pantalla lofi">
@@ -146,11 +240,20 @@
         <p>&copy; 2025 Lofi Vibes</p>
     </footer>
 
+    <div class="scroll-controls">
+        <button class="scroll-btn" id="scroll-up" aria-label="Subir">↑</button>
+        <button class="scroll-btn" id="scroll-down" aria-label="Bajar">↓</button>
+    </div>
+
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="js/main.js"></script>
 
     <div id="ambient-toast" aria-live="polite"></div>
+
+    <script src="js/scroll-animations.js" defer></script>
+
 </body>
 </html>

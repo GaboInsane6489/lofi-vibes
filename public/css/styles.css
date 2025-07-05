@@ -427,3 +427,167 @@ body::before {
     gap: 0.5rem;
 }
 
+/* ============================================
+    🎥 Video ambiente lofi
+    Descripción: Video relajante con sonido
+============================================ */
+
+#lofi-cinema {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-text);
+}
+
+#lofi-cinema h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #8be9fd;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.video-card {
+    background: rgba(30, 30, 47, 0.6);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 25px rgba(255, 184, 108, 0.3);
+    background: rgba(40, 40, 60, 0.7);
+}
+
+
+.video-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #ffb86c;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+lite-youtube {
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+}
+
+/* Animación suave al aparecer */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        ransform: translateY(0);
+    }
+}
+
+.video-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+
+.video-card.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ============================================
+    📖 Scroll narrativo: Historias lofi
+    Descripción: Estilos para bloques de historia
+    con animación suave al hacer scroll
+============================================ */
+
+
+/* Contenedor principal de la sección de historias con scroll vertical */
+
+#lofi-stories {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 50vh;
+    background: linear-gradient(to bottom, #1e1e2f, #2a2a3d);
+    color: #f0f0f0;
+}
+
+/* Cada bloque de historia ocupa una pantalla completa */
+
+.story-frame {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.8;
+
+    /* Estado inicial: invisible y desplazado hacia abajo */
+
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Cuando el bloque entra en el viewport, se vuelve visible */
+
+.story-frame.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-controls {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.scroll-btn {
+    background: rgba(40, 40, 60, 0.8);
+    color: #ffb86c;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 184, 108, 0.3);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.scroll-btn:hover {
+    transform: scale(1.1);
+    background: rgba(60, 60, 90, 0.9);
+}
