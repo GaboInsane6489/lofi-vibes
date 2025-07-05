@@ -327,25 +327,49 @@ body::before {
     🧘 Estilo de vida lofi
 ============================================ */
 #lifestyle {
-    margin-top: 2rem;
-    padding: 1rem;
+    max-width: 720px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background: rgba(30, 30, 47, 0.65);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    color: var(--color-text);
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+#lifestyle h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffb86c;
+}
+
+#lifestyle p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #ccc;
 }
 
 #lifestyle ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 #lifestyle li {
-    margin: 0.5rem 0;
-    padding-left: 1rem;
-    position: relative;
+    font-size: 1rem;
+    margin: 0.75rem 0;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 #lifestyle li::before {
     content: '🎧';
-    position: absolute;
-    left: 0;
+    font-size: 1.2rem;
+    display: inline-block;
 }
 
 /* ============================================
@@ -364,4 +388,42 @@ body::before {
     pointer-events: none;        /* No interfiere con clics */
 }
 
+/* ============================================
+    📜 Créditos
+    Descripción: Fuentes y agradecimientos
+============================================ */
+
+#credits {
+    max-width: 680px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: rgba(25, 25, 35, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    color: #ccc;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+#credits h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #8be9fd;
+}
+
+#credits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#credits li {
+    font-size: 1rem;
+    margin: 0.75rem 0;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
