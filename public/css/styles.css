@@ -639,3 +639,52 @@ lite-youtube {
     box-shadow: 0 0 15px rgba(255, 184, 108, 0.4);
 }
 
+/* ============================================
+    🐱 Gato lofi animado en ventana
+    Descripción: Imagen animada encima del título
+============================================ */
+
+.lofi-cat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    animation: float 4s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.lofi-cat {
+    max-width: 320px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255, 184, 108, 0.25);
+    animation: headTailMove 3.5s ease-in-out infinite;
+}
+
+/* Flotación general del contenedor */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Movimiento de cabeza y cola más marcado */
+@keyframes headTailMove {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-1.5deg);
+    }
+    50% {
+        transform: rotate(1.5deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
