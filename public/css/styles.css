@@ -9,6 +9,10 @@
     --font-main: 'Quicksand', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--color-bg); /* respaldo si la imagen no carga */
@@ -128,12 +132,56 @@ nav a:hover {
     border-radius: 6px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.ambience-controls button:hover {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .ambience-controls button.active {
     background-color: #3a3a4f;
     color: #ffb86c;
+}
+
+#ambient-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 47, 0.9);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 999;
+}
+#ambient-toast.show {
+    opacity: 1;
+}
+
+#stop-all-sounds {
+    background-color: #3a3a4f;
+    color: #ff5555;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0 8px rgba(255, 85, 85, 0.2);
+}
+
+#stop-all-sounds:hover {
+    background-color: #4a4a5f;
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 85, 85, 0.4);
 }
 
 /* ============================================

@@ -115,6 +115,9 @@ document.querySelectorAll('#ambience button').forEach(btn => {
         }
         audio.play();
         btn.classList.add('active');
+
+        // 🟢 Mostrar mensaje flotante
+        showAmbientToast(`${btn.textContent.trim()} activado`);
         } else {
             audio.pause();
             btn.classList.remove('active');
@@ -334,6 +337,7 @@ document.querySelectorAll('#ambience button').forEach(btn => {
     const audio = AmbiencePlayers[sound];
 
     if (audio.paused) {
+        showAmbientToast(`${btn.textContent.trim()} activado`);
         audio.play();
         btn.classList.add('active');
     } else {
@@ -342,6 +346,16 @@ document.querySelectorAll('#ambience button').forEach(btn => {
     }
     });
 });
+
+// 🛑 Botón para detener todos los sonidos ambientales
+document.getElementById('stop-all-sounds').addEventListener('click', () => {
+    Object.entries(AmbiencePlayers).forEach(([key, audio]) => {
+        audio.pause();
+        audio.currentTime = 0;
+        document.querySelector(`[data-sound="${key}"]`)?.classList.remove('active');
+    });
+});
+
 
 /* ============================================
     🌌 Cielo estrellado animado
@@ -423,3 +437,12 @@ function drawStars() {
 createStars(150);
 setInterval(createShootingStar, 5000);
 drawStars();
+
+
+// 💬 Mostrar mensaje flotante
+function showAmbientToast(message) {
+    const toast = document.getElementById('ambient-toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
