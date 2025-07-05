@@ -265,5 +265,33 @@ async function loadLofiImages() {
 // 🚀 Ejecutar al cargar el DOM
 document.addEventListener('DOMContentLoaded', loadLofiImages);
 
+/* ============================================
+    🌧️ Sonidos ambientales (lluvia, café, bosque)
+============================================ */
 
+const AmbiencePlayers = {
+    rain: new Audio('assets/audio/rain.mp3'),
+    cafe: new Audio('assets/audio/cafe.mp3'),
+    forest: new Audio('assets/audio/forest.mp3'),
+};
+
+Object.values(AmbiencePlayers).forEach(audio => {
+    audio.loop = true;
+    audio.volume = 0.4;
+});
+
+document.querySelectorAll('#ambience button').forEach(btn => {
+    btn.addEventListener('click', () => {
+    const sound = btn.dataset.sound;
+    const audio = AmbiencePlayers[sound];
+
+    if (audio.paused) {
+        audio.play();
+        btn.classList.add('active');
+    } else {
+        audio.pause();
+        btn.classList.remove('active');
+    }
+    });
+});
 
