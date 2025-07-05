@@ -299,3 +299,33 @@ body::before {
     position: absolute;
     left: 0;
 }
+
+/* ============================================
+    🌌 Fondo animado: cielo estrellado
+    Descripción: Canvas con estrellas y fugaces
+    sobre la imagen de fondo lofi
+============================================ */
+
+#stars-canvas {
+  position: fixed;              /* Se mantiene fijo al fondo */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;                   /* Detrás del contenido */
+    pointer-events: none;        /* No interfiere con clics */
+}
+
+/* ============================================
+    🖼️ Fondo principal: imagen lofi
+    Descripción: Imagen estática con efecto parallax
+============================================ */
+
+body {
+    background-image: url('assets/images/tu-fondo-lofi.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: 1; /* El contenido se renderiza sobre el canvas */
+}

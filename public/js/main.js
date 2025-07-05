@@ -5,6 +5,10 @@
     barra de progreso y visualización de tiempo.
 ============================================ */
 
+/* ============================================
+    🎧 Contexto de audio global
+============================================ */
+
 /* 🔗 Referencias a elementos del DOM */
 const audio = document.getElementById('audio');
 const playPauseBtn = document.getElementById('play-pause');
@@ -54,26 +58,73 @@ playPauseBtn.addEventListener('click', () => {
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
 
-// Crear contexto de audio y analizador
+// 🎧 Crear contexto de audio global
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// 🔊 Fuente principal (música lofi)
 const source = audioCtx.createMediaElementSource(audio);
-const analyser = audioCtx.createAnalyser();
+const mainAnalyser = audioCtx.createAnalyser();
+mainAnalyser.fftSize = 256;
+source.connect(mainAnalyser);
+mainAnalyser.connect(audioCtx.destination);
 
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
-
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
+// 📦 Datos de visualización
+const bufferLength = mainAnalyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
-// Estilo del canvas
+// 🎨 Estilo del canvas
 canvas.width = window.innerWidth * 0.9;
 canvas.height = 300;
 
+// 🌈 Colores para cada fuente
+const ambienceSources = {
+    rain: { file: 'assets/audio/rain.mp3', color: '#8be9fd' },
+    cafe: { file: 'assets/audio/cafe.mp3', color: '#ffb86c' },
+    forest: { file: 'assets/audio/forest.mp3', color: '#50fa7b' },
+};
+
+const ambiencePlayers = {};
+const analysers = { main: mainAnalyser };
+
+    // 🔁 Configurar cada sonido ambiental
+    for (const key in ambienceSources) {
+        const audio = new Audio(ambienceSources[key].file);
+        audio.loop = true;
+        audio.volume = 0.4;
+
+        const source = audioCtx.createMediaElementSource(audio);
+        const analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+
+        ambiencePlayers[key] = audio;
+        analysers[key] = analyser;
+    }
+
+// 🎛️ Control de botones ambientales
+document.querySelectorAll('#ambience button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const sound = btn.dataset.sound;
+        const audio = ambiencePlayers[sound];
+
+    if (audio.paused) {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        audio.play();
+        btn.classList.add('active');
+        } else {
+            audio.pause();
+            btn.classList.remove('active');
+        }
+    });
+});
+
+// 🖌️ Dibujar visuales combinados
 function drawVisualizer() {
     requestAnimationFrame(drawVisualizer);
-
-    analyser.getByteFrequencyData(dataArray);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -81,31 +132,39 @@ function drawVisualizer() {
     const amplitude = 100;
     const frequency = 0.02;
 
-    ctx.beginPath();
-    
+    // Fondo degradado
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
     gradient.addColorStop(0, '#1e1e2f');
     gradient.addColorStop(1, '#2c2c3e');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // 🔄 Dibujar cada fuente activa
+    for (const key in analysers) {
+        const analyser = analysers[key];
+        const color = ambienceSources[key]?.color || 'rgba(255, 184, 108, 0.8)';
+        const data = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(data);
 
-    ctx.moveTo(0, centerY);
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
 
-    for (let x = 0; x < canvas.width; x++) {
-        const i = Math.floor((x / canvas.width) * bufferLength);
-        const value = dataArray[i] / 255;
-        const y = centerY + Math.sin(x * frequency) * amplitude * value;
-        ctx.lineTo(x, y);
+        for (let x = 0; x < canvas.width; x++) {
+            const i = Math.floor((x / canvas.width) * data.length);
+            const value = data[i] / 255;
+            const y = centerY + Math.sin(x * frequency) * amplitude * value;
+            ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        console.log(key, data);
     }
-
-    ctx.strokeStyle = 'rgba(255, 184, 108, 0.8)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
 }
 
-
-// Iniciar visualizador al reproducir
+// 🚀 Iniciar visualizador al reproducir música principal
 audio.addEventListener('play', () => {
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
@@ -172,17 +231,6 @@ async function loadLofiImages() {
 }
 
 document.addEventListener('DOMContentLoaded', loadLofiImages);
-
-const ambiencePlayers = {
-    rain: new Audio('assets/audio/rain.mp3'),
-    cafe: new Audio('assets/audio/cafe.mp3'),
-    forest: new Audio('assets/audio/forest.mp3'),
-};
-
-Object.values(ambiencePlayers).forEach(audio => {
-    audio.loop = true;
-    audio.volume = 0.4;
-});
 
 document.querySelectorAll('#ambience button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -295,3 +343,83 @@ document.querySelectorAll('#ambience button').forEach(btn => {
     });
 });
 
+/* ============================================
+    🌌 Cielo estrellado animado
+============================================ */
+
+const starsCanvas = document.getElementById('stars-canvas');
+const starsCtx = starsCanvas.getContext('2d');
+
+let stars = [];
+let shootingStars = [];
+
+function resizeCanvas() {
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function createStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+        stars.push({
+            x: Math.random() * starsCanvas.width,
+            y: Math.random() * starsCanvas.height,
+            radius: Math.random() * 1.2,
+            alpha: Math.random(),
+            speed: Math.random() * 0.2 + 0.05,
+        });
+    }
+}
+
+function createShootingStar() {
+    shootingStars.push({
+        x: Math.random() * starsCanvas.width,
+        y: Math.random() * starsCanvas.height * 0.5,
+        length: Math.random() * 80 + 100,
+        speed: Math.random() * 10 + 6,
+        alpha: 1,
+    });
+}
+
+function drawStars() {
+    starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+
+    // Fondo transparente
+    starsCtx.fillStyle = 'rgba(0, 0, 0, 0)';
+    starsCtx.fillRect(0, 0, starsCanvas.width, starsCanvas.height);
+
+    // Estrellas fijas
+    stars.forEach(star => {
+        star.y += star.speed;
+        if (star.y > starsCanvas.height) star.y = 0;
+
+        starsCtx.beginPath();
+        starsCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        starsCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        starsCtx.fill();
+    });
+
+    // Estrellas fugaces
+    shootingStars.forEach((s, i) => {
+        s.x += s.speed;
+        s.y += s.speed * 0.3;
+        s.alpha -= 0.01;
+
+        starsCtx.strokeStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        starsCtx.lineWidth = 2;
+        starsCtx.beginPath();
+        starsCtx.moveTo(s.x, s.y);
+        starsCtx.lineTo(s.x - s.length, s.y - s.length * 0.3);
+        starsCtx.stroke();
+
+        if (s.alpha <= 0) shootingStars.splice(i, 1);
+    });
+
+    requestAnimationFrame(drawStars);
+}
+
+createStars(150);
+setInterval(createShootingStar, 5000);
+drawStars();
