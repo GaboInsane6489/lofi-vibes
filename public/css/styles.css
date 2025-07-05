@@ -25,6 +25,11 @@ body {
     z-index: 0;
 }
 
+body.night-mode {
+    background-color: #12121c;
+    color: #e0e0e0;
+}
+
 /* ============================================
     🧭 Encabezado y navegación
 ============================================ */

@@ -135,3 +135,135 @@ const swiper = new Swiper('.mySwiper', {
     },
 });
 
+async function loadLofiImages() {
+    const accessKey = 'TU_ACCESS_KEY_DE_UNSPLASH';
+    const response = await fetch(`https://api.unsplash.com/search/photos?query=lofi&per_page=5&client_id=${accessKey}`);
+    const data = await response.json();
+
+    const swiperWrapper = document.querySelector('.swiper-wrapper');
+    swiperWrapper.innerHTML = ''; // Limpia imágenes anteriores
+
+    data.results.forEach(photo => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<img src="${photo.urls.regular}" alt="${photo.alt_description || 'Imagen lofi'}" />`;
+        swiperWrapper.appendChild(slide);
+    });
+
+    // Reinicia Swiper
+    if (window.swiper) window.swiper.destroy(true, true);
+    window.swiper = new Swiper('.mySwiper', {
+        loop: true,
+        spaceBetween: 20,
+        centeredSlides: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadLofiImages);
+
+const ambiencePlayers = {
+    rain: new Audio('assets/audio/rain.mp3'),
+    cafe: new Audio('assets/audio/cafe.mp3'),
+    forest: new Audio('assets/audio/forest.mp3'),
+};
+
+Object.values(ambiencePlayers).forEach(audio => {
+    audio.loop = true;
+    audio.volume = 0.4;
+});
+
+document.querySelectorAll('#ambience button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const sound = btn.dataset.sound;
+        const audio = ambiencePlayers[sound];
+        if (audio.paused) {
+            audio.play();
+            btn.classList.add('active');
+        } else {
+            audio.pause();
+            btn.classList.remove('active');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hour = new Date().getHours();
+    if (hour >= 19 || hour < 6) {
+        document.body.classList.add('night-mode');
+    }
+});
+
+
+/* ============================================
+    🖼️ Galería dinámica con Unsplash API
+    Autor: Gabriel González
+    Descripción: Carga imágenes lofi desde Unsplash
+    y las integra al carrusel Swiper.js
+============================================ */
+
+async function loadLofiImages() {
+    const accessKey = 'bTNeZ1RzdsdjJ0bfV72nQ9aImFatOcaA-Xdg_m6wt9o'; // 🔐 
+
+    try {
+        // 📡 Solicitud a la API de Unsplash
+        const response = await fetch(`https://api.unsplash.com/search/photos?query=lofi&per_page=5&client_id=${accessKey}`);
+        const data = await response.json();
+
+        // 🎯 Selecciona el contenedor del carrusel
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        swiperWrapper.innerHTML = ''; // 🧹 Limpia imágenes anteriores
+
+        // 🖼️ Crea y agrega cada imagen como slide
+        data.results.forEach(photo => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            slide.innerHTML = `
+            <img src="${photo.urls.regular}" 
+                alt="${photo.alt_description || 'Imagen lofi'}" 
+                loading="lazy" />
+            `;
+        swiperWrapper.appendChild(slide);
+        });
+
+        // 🔄 Reinicia Swiper para que reconozca los nuevos slides
+        if (window.swiper) window.swiper.destroy(true, true);
+            window.swiper = new Swiper('.mySwiper', {
+            loop: true,
+            spaceBetween: 20,
+            centeredSlides: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+    } catch (error) {
+        console.error('❌ Error al cargar imágenes desde Unsplash:', error);
+    }
+}
+
+// 🚀 Ejecutar al cargar el DOM
+document.addEventListener('DOMContentLoaded', loadLofiImages);
+
+
+
