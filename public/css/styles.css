@@ -22,7 +22,7 @@ body {
     padding: 0;
     line-height: 1.6;
     position: relative;
-    z-index: 0;
+    z-index: 1;
 }
 
 body.night-mode {
@@ -307,7 +307,7 @@ body::before {
 ============================================ */
 
 #stars-canvas {
-  position: fixed;              /* Se mantiene fijo al fondo */
+    position: fixed;              /* Se mantiene fijo al fondo */
     top: 0;
     left: 0;
     width: 100vw;
@@ -316,16 +316,4 @@ body::before {
     pointer-events: none;        /* No interfiere con clics */
 }
 
-/* ============================================
-    🖼️ Fondo principal: imagen lofi
-    Descripción: Imagen estática con efecto parallax
-============================================ */
 
-body {
-    background-image: url('assets/images/tu-fondo-lofi.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    z-index: 1; /* El contenido se renderiza sobre el canvas */
-}
