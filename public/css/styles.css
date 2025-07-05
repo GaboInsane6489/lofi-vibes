@@ -83,40 +83,133 @@ nav a:hover {
     🎵 Reproductor de música
 ============================================ */
 
-.audio-player {
+/* 🎛️ CONTENEDOR PRINCIPAL */
+.cassette-player {
+    position: relative;
     background-color: #2a2a3d;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
+    border: 4px solid #c2a97e;
+    border-radius: 12px;
+    padding: 2.5rem;
     max-width: 400px;
     margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Courier New', monospace;
 }
 
+/* 🧱 CUERPO DEL CASETTE */
+.cassette-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100px;
+    background: #1e1e2e;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+/* 🌀 CARRETES GIRATORIOS */
+.reel {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    background: radial-gradient(#999, #333);
+    animation: spin 4s linear infinite;
+}
+
+/* 🎞️ CINTA ENTRE LOS CARRETES */
+.tape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 4px;
+    background: #444;
+    transform: translate(-50%, -50%);
+}
+
+/* 🎚️ CONTROLES DE AUDIO */
 .controls {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
 .controls button {
-    background: none;
-    border: none;
+    background-color: #3a3a4d;
+    border: 2px solid #ffb86c;
+    border-radius: 6px;
     color: #ffb86c;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .controls button:hover {
-    transform: scale(1.2);
+    background-color: #ffb86c;
+    color: #1a1a1a;
+    transform: scale(1.1);
 }
 
+.reel {
+    transition: transform 0.3s ease;
+}
+
+.reel.spinning {
+    animation: spin 4s linear infinite;
+}
+
+/* 📶 BARRAS DE PROGRESO Y VOLUMEN */
 #seek-bar {
-    width: 100%;
-    margin-top: 0.5rem;
-    accent-color: #8be9fd;
+    appearance: none;
+    height: 6px;
+    background: #444;
+    border-radius: 4px;
+    outline: none;
+    width: 150px;
+    cursor: pointer;
+}
+
+#seek-bar::-webkit-slider-thumb {
+    appearance: none;
+    height: 12px;
+    background: #ffb86c;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 2px #000;
+}
+
+#volume {
+    appearance: none;
+    width: 80px;
+    height: 6px;
+    background: #444;
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: #ffb86c;
+}
+
+#volume::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #ffb86c;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 2px #000;
+}
+
+/* 🔁 ANIMACIÓN DE GIRO */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 #ambience {

@@ -9,12 +9,18 @@
     🎧 Contexto de audio global
 ============================================ */
 
-/* 🔗 Referencias a elementos del DOM */
+/* ============================================
+    🎧 Reproductor estilo cassette - Lofi Vibes
+============================================ */
+
+/* 🔗 Referencias al DOM */
 const audio = document.getElementById('audio');
 const playPauseBtn = document.getElementById('play-pause');
 const currentTime = document.getElementById('current-time');
 const duration = document.getElementById('duration');
 const seekBar = document.getElementById('seek-bar');
+const volumeSlider = document.getElementById('volume');
+const reels = document.querySelectorAll('.reel');
 
 /* 🕒 Formatear segundos a mm:ss */
 function formatTime(seconds) {
@@ -35,21 +41,37 @@ audio.addEventListener('timeupdate', () => {
     seekBar.value = audio.currentTime;
 });
 
-/* 🎚️ Permitir al usuario adelantar/retroceder */
+/* 🎚️ Adelantar/retroceder */
 seekBar.addEventListener('input', () => {
     audio.currentTime = seekBar.value;
 });
 
-/* ▶️⏸️ Alternar reproducción/pausa */
+/* 🔊 Control de volumen */
+if (volumeSlider) {
+    volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+    });
+}
+
+/* ▶️⏸️ Alternar reproducción/pausa + animación */
 playPauseBtn.addEventListener('click', () => {
     if (audio.paused) {
         audio.play();
         playPauseBtn.textContent = '⏸️';
+        reels.forEach(reel => reel.classList.add('spinning'));
     } else {
         audio.pause();
         playPauseBtn.textContent = '▶️';
+        reels.forEach(reel => reel.classList.remove('spinning'));
     }
 });
+
+/* 🛑 Detener animación al finalizar */
+audio.addEventListener('ended', () => {
+    playPauseBtn.textContent = '▶️';
+    reels.forEach(reel => reel.classList.remove('spinning'));
+});
+
 
 /* ============================================
     🌌 Visualizador de audio con Canvas

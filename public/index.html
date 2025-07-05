@@ -48,15 +48,27 @@
 
         <section id="player" aria-label="Reproductor de música lofi">
             <h2>Escucha y relájate</h2>
-            <div class="audio-player">
-                <audio id="audio" src="assets/audio/sample.mp3"></audio>
-                <div class="controls">
-                    <button id="play-pause">▶️</button>
-                    <span id="current-time">0:00</span> /
-                    <span id="duration">0:00</span>
-                    <input type="range" id="seek-bar" value="0" />
-                </div>
+            <div class="cassette-player">
+                <div class="cassette-body">
+                <div class="reel left"></div>
+                <div class="tape"></div>
+                <div class="reel right"></div>
             </div>
+            <div class="controls">
+                <button id="play-pause">▶️</button>
+                <span id="current-time">0:00</span> /
+                <span id="duration">0:00</span>
+                <input type="range" id="seek-bar" value="0" />
+                <input type="range" id="volume" min="0" max="1" step="0.01" />
+            </div>
+                <audio id="audio" src="assets/audio/sample.mp3"></audio>
+            </div>
+        </section>
+
+        <!-- 🌌 Visualizaciones animadas -->
+        <section id="visuals" aria-label="Visualizaciones animadas">
+            <h2>Visuales en tiempo real</h2>
+            <canvas id="visualizer" width="800" height="400"></canvas>
         </section>
 
         <section id="ambience" aria-label="Sonidos ambientales">
@@ -68,57 +80,6 @@
                 <button data-sound="forest">🌲 Bosque</button>
             </div>
             <button id="stop-all-sounds">🛑 Detener todos</button>
-        </section>
-
-        <!-- 🌌 Visualizaciones animadas -->
-        <section id="visuals" aria-label="Visualizaciones animadas">
-            <h2>Visuales en tiempo real</h2>
-            <canvas id="visualizer" width="800" height="400"></canvas>
-        </section>
-
-        <!-- 📚 Blog o artículos sobre el estilo lofi -->
-        <section id="lofi-stories" aria-label="Historias lofi">
-            <div class="story-frame">
-                <h2>📖 Historias lofi</h2>
-                <p>
-                    En una ciudad que nunca duerme, una ventana iluminada esconde un mundo de calma.  
-                    Mientras el bullicio se disuelve en la distancia, una taza de té humea sobre el alféizar.  
-                    Afuera, las luces parpadean como pensamientos dispersos en la mente de alguien que no quiere dormir.  
-                    Adentro, un beat suave marca el ritmo de una noche sin prisa.  
-                    Cada sombra proyectada en la pared cuenta una historia que nadie más escucha.  
-                    Y en ese rincón suspendido entre el ruido y el silencio, nace el lofi.
-                </p>
-            </div>
-            <div class="story-frame">
-                <p>
-                    Una taza de café humeante, lluvia en el cristal, y un beat que late como el corazón.  
-                    Afuera, el mundo se mueve deprisa, pero aquí dentro todo se ralentiza.  
-                    Las gotas dibujan caminos en el vidrio como pensamientos que fluyen sin rumbo.  
-                    El aroma del café se mezcla con la melodía, envolviendo el espacio en una calma tibia.  
-                    Cada compás parece sincronizarse con la respiración, como si el tiempo se plegara suavemente.  
-                    En ese instante suspendido, el lofi se convierte en refugio.
-                </p>
-            </div>
-            <div class="story-frame">
-                <p>
-                    El lofi no solo suena: se siente. Es refugio, es pausa, es memoria.  
-                    Cada nota parece contener un suspiro, una mirada perdida, un instante que no se repite.  
-                    No hay letra que lo explique, solo atmósferas que se deslizan entre los pensamientos.  
-                    Es la banda sonora de quienes escriben sin hablar, de quienes sienten sin ruido.  
-                    En medio del caos, el lofi abre una puerta invisible hacia adentro.  
-                    Y al cruzarla, el mundo se vuelve más lento, más suave, más tuyo.
-                </p>
-            </div>
-            <div class="story-frame">
-                <p>
-                    Y tú, ¿qué historia escuchas cuando el mundo se silencia?  
-                    Tal vez es el eco de una tarde que no quieres olvidar, o el murmullo de un sueño que aún no despierta.  
-                    Puede ser el sonido de una calle vacía, o el latido de un recuerdo que vuelve con cada beat.  
-                    En el silencio, el lofi no impone: acompaña.  
-                    Te deja espacio para pensar, para sentir, para simplemente estar.  
-                    Porque a veces, la historia más importante es la que aún estás escribiendo.
-                </p>
-            </div>
         </section>
 
         <!-- 🎨 Galería de ilustraciones lofi -->
@@ -240,6 +201,51 @@
                 <button>📻 Lofi Beats Radio</button>
                 <button>🌙 Chillhop Stream</button>
                 <button>☕ Café Lofi 24/7</button>
+            </div>
+        </section>
+
+        <!-- 📚 Blog o artículos sobre el estilo lofi -->
+        <section id="lofi-stories" aria-label="Historias lofi">
+            <div class="story-frame">
+                <h2>📖 Historias lofi</h2>
+                <p>
+                    En una ciudad que nunca duerme, una ventana iluminada esconde un mundo de calma.  
+                    Mientras el bullicio se disuelve en la distancia, una taza de té humea sobre el alféizar.  
+                    Afuera, las luces parpadean como pensamientos dispersos en la mente de alguien que no quiere dormir.  
+                    Adentro, un beat suave marca el ritmo de una noche sin prisa.  
+                    Cada sombra proyectada en la pared cuenta una historia que nadie más escucha.  
+                    Y en ese rincón suspendido entre el ruido y el silencio, nace el lofi.
+                </p>
+            </div>
+            <div class="story-frame">
+                <p>
+                    Una taza de café humeante, lluvia en el cristal, y un beat que late como el corazón.  
+                    Afuera, el mundo se mueve deprisa, pero aquí dentro todo se ralentiza.  
+                    Las gotas dibujan caminos en el vidrio como pensamientos que fluyen sin rumbo.  
+                    El aroma del café se mezcla con la melodía, envolviendo el espacio en una calma tibia.  
+                    Cada compás parece sincronizarse con la respiración, como si el tiempo se plegara suavemente.  
+                    En ese instante suspendido, el lofi se convierte en refugio.
+                </p>
+            </div>
+            <div class="story-frame">
+                <p>
+                    El lofi no solo suena: se siente. Es refugio, es pausa, es memoria.  
+                    Cada nota parece contener un suspiro, una mirada perdida, un instante que no se repite.  
+                    No hay letra que lo explique, solo atmósferas que se deslizan entre los pensamientos.  
+                    Es la banda sonora de quienes escriben sin hablar, de quienes sienten sin ruido.  
+                    En medio del caos, el lofi abre una puerta invisible hacia adentro.  
+                    Y al cruzarla, el mundo se vuelve más lento, más suave, más tuyo.
+                </p>
+            </div>
+            <div class="story-frame">
+                <p>
+                    Y tú, ¿qué historia escuchas cuando el mundo se silencia?  
+                    Tal vez es el eco de una tarde que no quieres olvidar, o el murmullo de un sueño que aún no despierta.  
+                    Puede ser el sonido de una calle vacía, o el latido de un recuerdo que vuelve con cada beat.  
+                    En el silencio, el lofi no impone: acompaña.  
+                    Te deja espacio para pensar, para sentir, para simplemente estar.  
+                    Porque a veces, la historia más importante es la que aún estás escribiendo.
+                </p>
             </div>
         </section>
 

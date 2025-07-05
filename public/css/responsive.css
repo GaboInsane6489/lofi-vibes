@@ -99,3 +99,52 @@ section {
         width: 10px;
     }
 }
+
+@media (max-width: 400px) {
+  /* 🎛️ Contenedor principal */
+    .cassette-player {
+        padding: 0.75rem;
+        border-width: 3px;
+        max-width: 95%;
+    }
+
+    /* 🧱 Cuerpo del cassette */
+    .cassette-body {
+        height: 80px;
+        padding: 0 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .reel {
+        width: 30px;
+        height: 30px;
+    }
+
+    .tape {
+        width: 50%;
+        height: 3px;
+    }
+
+    /* 🎚️ Controles reorganizados */
+    .controls {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .controls button {
+        font-size: 1rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    #seek-bar,
+    #volume {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    /* 🕒 Tiempo alineado */
+    #current-time,
+    #duration {
+        font-size: 0.9rem;
+    }
+}
