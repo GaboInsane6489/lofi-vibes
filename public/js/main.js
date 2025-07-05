@@ -468,3 +468,44 @@ function showAmbientToast(message) {
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2500);
 }
+
+/* ============================================
+    Staciones y Streams de Lofi
+============================================ */
+
+const stationPlayer = document.getElementById('station-player');
+const stationButtons = document.querySelectorAll('.station-buttons button');
+const tunerSound = new Audio('assets/audio/tuner-static.mp3');
+
+const streams = {
+    lofi: {
+        title: "Lofi Beats Radio",
+        embed: `<iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+    },
+    chillhop: {
+        title: "Chillhop Stream",
+        embed: `<iframe src="https://www.youtube.com/embed/5yx6BWlEVcY?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+    },
+    cafe: {
+        title: "Café Lofi 24/7",
+        embed: `<iframe src="https://www.youtube.com/embed/2gliGzb2_1I?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+    }
+};
+
+stationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const key = button.dataset.stream;
+        const stream = streams[key];
+        // Espera 300ms antes de mostrar el nuevo stream
+        stationPlayer.classList.add('transitioning');
+        setTimeout(() => {
+            stationPlayer.innerHTML = `
+                <div class="station-container">
+                    <h3>${stream.title}</h3>
+                        ${stream.embed}
+                </div>
+            `;
+            stationPlayer.classList.remove('transitioning');
+        }, 300);
+    });
+});

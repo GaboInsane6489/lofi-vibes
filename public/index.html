@@ -193,14 +193,15 @@
         </section>
 
         <!-- 📡 API de estaciones lofi (futuro) -->
-        <section id="stations" aria-label="Estaciones de radio lofi">
+        <section id="live-stations" aria-label="Estaciones en vivo">
             <h2>Estaciones en vivo</h2>
-            <p>Escucha transmisiones lofi en tiempo real desde todo el mundo.</p>
-            <div class="station-list">
-                <!-- Aquí podrías integrar una API como RadioBrowser o Shoutcast -->
-                <button>📻 Lofi Beats Radio</button>
-                <button>🌙 Chillhop Stream</button>
-                <button>☕ Café Lofi 24/7</button>
+            <div class="station-buttons">
+                <button data-stream="lofi">🎧 Lofi Beats Radio</button>
+                <button data-stream="chillhop">🌙 Chillhop Stream</button>
+                <button data-stream="cafe">☕ Café Lofi 24/7</button>
+            </div>
+            <div id="station-player" class="station-output">
+                <!-- Aquí se inyectará el reproductor -->
             </div>
         </section>
 

@@ -396,32 +396,51 @@ body::before {
 /* ============================================
     📡 Estaciones de radio lofi
 ============================================ */
-#stations {
-    margin-top: 2rem;
+#live-stations {
     text-align: center;
+    margin-top: 3rem;
 }
 
-.station-list {
+.station-buttons {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     justify-content: center;
-    margin-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
-.station-list button {
-    background-color: #2a2a3d;
+.station-buttons button {
+    background-color: #3a3a4d;
+    border: 2px solid #ffb86c;
     color: #ffb86c;
-    border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 6px;
+    font-family: 'Courier New', monospace;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
 }
 
-.station-list button:hover {
-    background-color: #3a3a4f;
+.station-buttons button:hover {
+    background-color: #ffb86c;
+    color: #2a2a3d;
 }
+
+.station-output iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    margin: 0 auto;
+}
+
+.station-output.transitioning {
+    filter: blur(3px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+
 
 /* ============================================
     🧘 Estilo de vida lofi
