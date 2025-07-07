@@ -509,3 +509,29 @@ stationButtons.forEach(button => {
         }, 300);
     });
 });
+
+/* ============================================
+    📱 Menú lateral responsivo (toggle en móviles)
+    Descripción: Abre y cierra el menú lateral 
+    en pantallas pequeñas mediante el botón ☰
+============================================ */
+
+// Referencias al botón y al sidebar
+const toggleBtn = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+
+// Verifica que ambos elementos existan antes de aplicar lógica
+if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open'); // Alterna la clase 'open' para mostrar u ocultar el menú
+    });
+
+    // Cierra el menú al hacer clic en un enlace (opcional)
+    const navLinks = sidebar.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+    });
+}
+
