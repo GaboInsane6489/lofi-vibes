@@ -13,7 +13,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lofi Vibes</title>
+    <title>Lofi Vibes ☕</title>
 
         <!-- Estilos base -->
     <link rel="stylesheet" href="css/styles.css" />
@@ -29,17 +29,17 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.2.0/src/lite-yt-embed.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.2.0/src/lite-yt-embed.css" />
 
+    <!-- Favicon principal en SVG -->
+    <link rel="icon" type="image/svg+xml" href="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8">
 
 </head>
 
-<body>
+    <body>
+        <canvas id="stars-canvas" aria-hidden="true"></canvas>
+        <button id="menu-toggle" aria-label="Abrir menú">☰</button>
 
-    <canvas id="stars-canvas" aria-hidden="true"></canvas>
-
-    <button id="menu-toggle" aria-label="Abrir menú">☰</button>
-
-    <!-- 🧭 Encabezado principal con navegación -->
-    <header>
+        <!-- 🧭 Encabezado principal con navegación -->
+        <header>
         <nav class="sidebar">
             <h1>Lofi Vibes</h1>
             <ul>
@@ -55,14 +55,14 @@
                 <li><a href="#contact">📬 Contacto</a></li>
             </ul>
         </nav>
-    </header>
-
-    <!-- 🎵 Sección principal del reproductor -->
-    <main>
+        </header>
+    
+        <main>
         <div class="lofi-cat-container">
             <img src="assets/images/lofi-cat-window.gif" alt="Gato lofi en la ventana escuchando música" class="lofi-cat">
         </div>
 
+        <!-- 🎵 Sección principal del reproductor -->
         <section id="player" aria-label="Reproductor de música lofi">
             <h2>Escucha y relájate</h2>
             <div class="cassette-player">
@@ -288,22 +288,19 @@
             </ul>
         </section>
 
-    </main>
+        </main>
 
-    <!-- 📞 Pie de página con contacto y créditos -->
-    <footer id="contact">
+        <!-- 📞 Pie de página con contacto y créditos -->
+        <footer id="contact">
         <p>Creado por Gabriel González · <a href="https://github.com/tuusuario" target="_blank" <a href="#credits">Créditos</a>>GitHub</a></p>
         <p>&copy; 2025 Lofi Vibes</p>
-    </footer>
+        </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/scroll-animations.js" defer></script>
 
-    <script src="js/main.js"></script>
-
-    <div id="ambient-toast" aria-live="polite"></div>
-
-    <script src="js/scroll-animations.js" defer></script>
-
-</body>
+        <div id="ambient-toast" aria-live="polite"></div>    
+    </body>
 </html>
